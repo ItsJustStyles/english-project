@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Homes & Communities Around the World — National Geographic</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --ink: #0D1B2A;
+      --ink2: #1A2940;
+      --paper: #F0EDE4;
+      --gold: #E8A020;
+      --gold-d: #B47A00;
+      --muted: #8CA0B5;
+      --white: #FFFFFF;
+    }
+    body { font-family: 'Source Sans 3', sans-serif; background: var(--ink); color: var(--paper); line-height: 1.7; }
+
+    /* NAV */
+    nav { background: var(--ink); border-bottom: 1px solid rgba(140,160,181,.2); padding: 0 48px; display: flex; align-items: center; justify-content: space-between; height: 58px; position: sticky; top: 0; z-index: 100; }
+    .nav-brand { font-size: 12px; font-weight: 600; letter-spacing: .15em; text-transform: uppercase; color: var(--gold); }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a { font-size: 13px; color: var(--muted); text-decoration: none; letter-spacing: .05em; transition: color .2s; }
+    .nav-links a:hover { color: var(--paper); }
+
+    /* HERO */
+    .hero { max-width: 860px; margin: 0 auto; padding: 72px 48px 56px; border-bottom: 1px solid rgba(140,160,181,.2); }
+    .hero-kicker { font-size: 11px; font-weight: 600; letter-spacing: .15em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
+    .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(34px, 5vw, 54px); font-weight: 700; line-height: 1.15; color: var(--paper); margin-bottom: 22px; }
+    .hero h1 span { color: var(--gold); font-style: italic; }
+    .hero-desc { font-size: 17px; font-weight: 300; line-height: 1.8; color: var(--muted); max-width: 580px; margin-bottom: 28px; }
+    .hero-tags { display: flex; gap: 10px; flex-wrap: wrap; }
+    .tag { font-size: 12px; font-weight: 600; letter-spacing: .08em; padding: 5px 14px; border: 1px solid rgba(232,160,32,.4); color: var(--gold); border-radius: 3px; }
+
+    /* CONTAINER */
+    .container { max-width: 860px; margin: 0 auto; padding: 0 48px; }
+
+    /* ABOUT */
+    .about { padding: 52px 0; border-bottom: 1px solid rgba(140,160,181,.2); display: grid; grid-template-columns: 110px 1fr; gap: 28px; align-items: start; }
+    .avatar { width: 84px; height: 84px; border-radius: 50%; background: rgba(232,160,32,.1); border: 2px solid var(--gold-d); display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700; color: var(--gold); margin: 0 auto 10px; }
+    .about-role { font-size: 10px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); text-align: center; }
+    .about-content h2 { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 500; color: var(--paper); margin-bottom: 5px; }
+    .about-subtitle { font-size: 12px; color: var(--gold); font-weight: 600; letter-spacing: .1em; text-transform: uppercase; margin-bottom: 14px; }
+    .about-content p { font-size: 15px; line-height: 1.8; color: var(--muted); margin-bottom: 10px; }
+    .about-content p:last-child { margin-bottom: 0; }
+    .about-content em { color: var(--paper); font-style: italic; }
+
+    /* TABS */
+    .tab-header { display: flex; border-bottom: 1px solid rgba(140,160,181,.2); margin-top: 48px; }
+    .tab-btn { padding: 13px 22px; font-family: 'Source Sans 3', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); background: none; border: none; border-bottom: 2px solid transparent; cursor: pointer; transition: color .2s; margin-bottom: -1px; }
+    .tab-btn.active { color: var(--gold); border-bottom-color: var(--gold); }
+    .tab-btn:hover:not(.active) { color: var(--paper); }
+
+    /* COUNTRY SECTION */
+    .country-section { padding: 44px 0; border-bottom: 1px solid rgba(140,160,181,.2); }
+    .country-header { display: flex; align-items: center; gap: 18px; margin-bottom: 28px; }
+    .country-stamp { width: 60px; height: 60px; border-radius: 50%; border: 2px solid; display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-size: 13px; font-weight: 700; flex-shrink: 0; }
+    .stamp-jp { border-color: #BC002D; color: #BC002D; background: rgba(188,0,45,.08); }
+    .stamp-cn { border-color: var(--gold); color: var(--gold); background: rgba(232,160,32,.08); }
+    .stamp-mn { border-color: #4A9EE0; color: #4A9EE0; background: rgba(74,158,224,.08); }
+    .country-header h2 { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; color: var(--paper); margin-bottom: 4px; }
+    .country-header p { font-size: 14px; color: var(--muted); }
+    .prose { font-size: 16px; line-height: 1.82; color: var(--muted); }
+    .prose p { margin-bottom: 1em; }
+    .prose p:last-child { margin-bottom: 0; }
+    .prose em { color: var(--paper); font-style: italic; }
+    .prose strong { color: var(--paper); font-weight: 600; }
+
+    /* STAGE 2 */
+    .s2-label { font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--gold-d); margin: 30px 0 10px; }
+    .s2-block { background: var(--ink2); border-left: 3px solid var(--gold-d); padding: 18px 22px; border-radius: 0 8px 8px 0; font-size: 15px; line-height: 1.82; color: var(--muted); }
+    .s2-block em { color: var(--paper); font-style: italic; }
+    .s2-block strong { color: var(--gold); font-weight: 600; }
+
+    /* FOOTER */
+    footer { padding: 28px 48px; border-top: 1px solid rgba(140,160,181,.2); display: flex; justify-content: space-between; align-items: center; }
+    .footer-brand { font-size: 12px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--gold-d); }
+    .footer-info { font-size: 12px; color: var(--muted); text-align: right; line-height: 1.6; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-brand">National Geographic</span>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#countries">Countries</a></li>
+  </ul>
+</nav>
+
+<div class="hero">
+  <p class="hero-kicker">I Semester 2026 &nbsp;·&nbsp; CI-1231 English II</p>
+  <h1>Homes & Communities<br>Around the World:<br><span>A Journey Through Asia</span></h1>
+  <p class="hero-desc">Welcome to our National Geographic digital magazine! This website explores the homes and communities of Japan, China, and Mongolia. If you read this magazine, you will discover how unique and beautiful these places are. Our goal is to show you how people live in harmony with their environment.</p>
+  <div class="hero-tags">
+    <span class="tag">Japan</span>
+    <span class="tag">China</span>
+    <span class="tag">Mongolia</span>
+  </div>
+</div>
+
+<div class="container" id="about">
+  <div class="about">
+    <div>
+      <div class="avatar">AR</div>
+      <p class="about-role">Tourist Guide</p>
+    </div>
+    <div class="about-content">
+      <h2>Alex Rivera</h2>
+      <p class="about-subtitle">Tourist Guide &nbsp;·&nbsp; National Geographic Team</p>
+      <p>My name is Alex Rivera and I work as a tourist guide for National Geographic. I am responsible for taking visitors to special places around the world. My job involves <em>traveling</em> to different countries, <em>learning</em> about local cultures, and <em>helping</em> people understand how communities live.</p>
+      <p>I use photography, storytelling, and maps <em>in order to</em> guide tourists through incredible destinations. If you join one of my tours, you will have an unforgettable experience. My purpose is to <em>connect</em> people with cultures they have never seen before. <em>Visiting</em> traditional homes is the part of my job I love the most.</p>
+    </div>
+  </div>
+</div>
+
+<div class="container" id="countries">
+  <div class="tab-header">
+    <button class="tab-btn active" onclick="showTab('japan', this)">Japan</button>
+    <button class="tab-btn" onclick="showTab('china', this)">China</button>
+    <button class="tab-btn" onclick="showTab('mongolia', this)">Mongolia</button>
+  </div>
+
+  <!-- JAPAN -->
+  <div id="tab-japan" class="country-section">
+    <div class="country-header">
+      <div class="country-stamp stamp-jp">JP</div>
+      <div>
+        <h2>Japan</h2>
+        <p>The Art of Simple Living</p>
+      </div>
+    </div>
+    <div class="prose">
+      <p>Japan is a country with a rich history and a unique way of living. People in Japan live in both modern apartments and traditional wooden houses called <em>machiya</em> or <em>minka</em>. These homes are known for their elegant simplicity and natural materials.</p>
+      <p>Traditional Japanese homes use sliding doors called <em>shoji</em> in order to divide spaces and let natural light in. <strong>Living in a Japanese home teaches you</strong> the value of minimalism. If you visit a traditional Japanese house, you will notice that shoes are removed at the entrance — this shows respect for the space.</p>
+      <p>Japanese gardens are placed next to living areas to bring peace and beauty to daily life. If you want to experience true Japanese culture, visiting a <em>machiya</em> in Kyoto is a wonderful idea.</p>
+    </div>
+    <p class="s2-label">Stage 2 — Passive Voice &amp; Second Conditional</p>
+    <div class="s2-block">
+      Traditional Japanese homes <em>are built</em> with wood, paper, and bamboo. <em>Shoji</em> screens <em>are used</em> to let soft light into the rooms. Many of these homes <em>are preserved</em> today as cultural heritage sites. <strong>If I lived</strong> in a traditional Japanese home, I <strong>would wake up</strong> every morning to the sound of birds in the garden. <strong>If more people understood</strong> Japanese architecture, they <strong>would appreciate</strong> the beauty of simple design.
+    </div>
+  </div>
+
+  <!-- CHINA -->
+  <div id="tab-china" class="country-section" style="display:none">
+    <div class="country-header">
+      <div class="country-stamp stamp-cn">CN</div>
+      <div>
+        <h2>China</h2>
+        <p>From Courtyard Homes to Earthen Fortresses</p>
+      </div>
+    </div>
+    <div class="prose">
+      <p>China is one of the largest countries in the world, and its homes reflect its many different cultures and climates. Two of the most interesting traditional homes are the <em>hutong</em> (courtyard house) in Beijing and the <em>tulou</em> (earthen building) in Fujian province.</p>
+      <p><strong>Living in a hutong means</strong> sharing space and daily life with your neighbors. If you walk through the hutongs of Beijing, you will feel like you are traveling back in time. People use these spaces to cook, to talk, and to spend time together in order to maintain their community bonds.</p>
+      <p>The <em>tulou</em> is a large circular building made of earth. If you see a tulou for the first time, you will be amazed by its size and strength. <strong>Visiting a tulou helps you understand</strong> how communities worked together for safety.</p>
+    </div>
+    <p class="s2-label">Stage 2 — Passive Voice &amp; Second Conditional</p>
+    <div class="s2-block">
+      <em>Hutong</em> communities <em>are found</em> in the historic center of Beijing. The <em>tulou</em> buildings <em>were constructed</em> by the Hakka people hundreds of years ago. Today, these structures <em>are recognized</em> as UNESCO World Heritage Sites. The walls <em>are made</em> of earth, wood, and stone. <strong>If I lived</strong> in a <em>tulou</em>, I <strong>would never feel</strong> alone because hundreds of people share the same building. <strong>If the hutongs were not protected</strong>, Beijing <strong>would lose</strong> an important part of its cultural identity.
+    </div>
+  </div>
+
+  <!-- MONGOLIA -->
+  <div id="tab-mongolia" class="country-section" style="display:none">
+    <div class="country-header">
+      <div class="country-stamp stamp-mn">MN</div>
+      <div>
+        <h2>Mongolia</h2>
+        <p>Life in a Ger</p>
+      </div>
+    </div>
+    <div class="prose">
+      <p>Mongolia is a vast country with wide open grasslands called steppes. The traditional home of Mongolian people is called a <em>ger</em> (also known as a yurt). A <em>ger</em> is a round, portable tent made of wood and felt — perfect for a nomadic lifestyle.</p>
+      <p><strong>Living in a ger is</strong> a special experience. The <em>ger</em> is easy to assemble and to disassemble, which allows families to move with their animals across the land. If you visit a Mongolian family, you will be welcomed inside their <em>ger</em> with tea and food.</p>
+      <p>The <em>ger</em> has a hole in the center of the roof in order to let smoke out and light in. Families use colorful carpets and hand-painted patterns to make their homes beautiful. If you look inside a ger, you will see how much meaning and art Mongolian people put into their homes.</p>
+    </div>
+    <p class="s2-label">Stage 2 — Passive Voice &amp; Second Conditional</p>
+    <div class="s2-block">
+      The <em>ger</em> <em>is made</em> of a wooden frame covered with thick felt. It <em>is assembled</em> by the whole family in less than two hours. The interior <em>is decorated</em> with traditional patterns that represent nature and the cosmos. <em>Gers</em> <em>have been used</em> by Mongolian nomads for thousands of years. <strong>If I lived</strong> in a <em>ger</em>, I <strong>would sleep</strong> under the stars through the roof opening every night. <strong>If Mongolia were</strong> a warmer country, people <strong>would not need</strong> the thick felt walls to protect them from the cold.
+    </div>
+  </div>
+</div>
+
+<footer>
+  <span class="footer-brand">National Geographic &nbsp;·&nbsp; Digital Magazine</span>
+  <div class="footer-info">
+    <p>CI-1231 English II &nbsp;·&nbsp; I Semester 2026</p>
+    <p>Instructor: Johanny Vallecillo Alfaro</p>
+  </div>
+</footer>
+
+<script>
+  function showTab(name, btn) {
+    ['japan','china','mongolia'].forEach(function(t) {
+      document.getElementById('tab-' + t).style.display = 'none';
+    });
+    document.querySelectorAll('.tab-btn').forEach(function(b) {
+      b.classList.remove('active');
+    });
+    document.getElementById('tab-' + name).style.display = 'block';
+    btn.classList.add('active');
+  }
+</script>
+</body>
+</html>
